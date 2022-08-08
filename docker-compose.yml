@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: mysql:5
+    environment:
+      - MYSQL_DATABASE=vpn
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+      - PMA_HOST=mysql
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql

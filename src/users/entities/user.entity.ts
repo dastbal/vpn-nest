@@ -4,10 +4,12 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Minute } from './minute.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -26,10 +28,6 @@ export class User {
     type: 'datetime',
   })
   createAt: Date;
-  //   @UpdateDateColumn({
-  //     name: 'update_at',
-  //     // type: 'timestamptz',
-  //     default: () => 'CURRENT_TIMESTAMP',
-  //   })
-  //   updateAt: Date;
+  @OneToMany(() => Minute, (minute) => minute.user)
+  minutes: Minute[];
 }

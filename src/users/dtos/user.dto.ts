@@ -10,5 +10,9 @@ export class CreateUserDto {
   @IsNotEmpty()
   @ApiProperty({ description: ' The Last Name of the user' })
   readonly lastName: string;
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({ description: ' Name of the file of the user' })
+  readonly commonName: string;
 }
 // export class UpdatePizzaDto extends PartialType(CreateUserDto) {}

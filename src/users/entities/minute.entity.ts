@@ -1,13 +1,13 @@
-import { Exclude } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity({ name: 'minutes' })
 export class Minute {
@@ -19,20 +19,17 @@ export class Minute {
   @Column({ type: 'bool' })
   status: boolean;
 
-  @Column({ name: 'bytes_recieved', type: 'int', width: 200 })
-  bytesRecieved: number;
-  @Column({ name: 'bytes_sent', type: 'int', width: 200 })
-  bytesSent: number;
+  @Column({ name: 'bytes_received', type: 'varchar', length: 255 })
+  bytesReceived: string;
+  @Column({ name: 'bytes_sent', type: 'varchar', length: 255 })
+  bytesSent: string;
 
   @CreateDateColumn({
     name: 'create_at',
     type: 'datetime',
   })
   createAt: Date;
-  //   @UpdateDateColumn({
-  //     name: 'update_at',
-  //     // type: 'timestamptz',
-  //     default: () => 'CURRENT_TIMESTAMP',
-  //   })
-  //   updateAt: Date;
+
+  @ManyToOne(() => User, (user) => user.minutes)
+  user: User;
 }

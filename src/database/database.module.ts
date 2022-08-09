@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import databaseConfig from 'src/config/database.config';
+import { Day } from 'src/users/entities/day.entity';
 import { Minute } from 'src/users/entities/minute.entity';
 import { User } from 'src/users/entities/user.entity';
 @Module({
@@ -18,7 +19,7 @@ import { User } from 'src/users/entities/user.entity';
           username,
           database: name,
           password,
-          entities: [User, Minute],
+          entities: [User, Minute, Day],
 
           //   url: configService.postgresUrl,
           synchronize: true,

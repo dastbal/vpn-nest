@@ -113,6 +113,10 @@ export class UsersService {
     return 'One Minute Registered';
   }
 
+  async createDay() {
+    return 'hi';
+  }
+
   // data to render the fronted
   async rendeVpnData() {
     const vpnData = this.appService.getData();

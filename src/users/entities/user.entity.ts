@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Day } from './day.entity';
 import { Minute } from './minute.entity';
 
 @Entity({ name: 'users' })
@@ -30,4 +31,6 @@ export class User {
   createAt: Date;
   @OneToMany(() => Minute, (minute) => minute.user)
   minutes: Minute[];
+  @OneToMany(() => Day, (day) => day.user)
+  days: Day[];
 }
